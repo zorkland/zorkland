@@ -1,5 +1,3 @@
-require 'set'
-
 class Location
   attr_reader :name, :description, :exits
 
@@ -16,11 +14,11 @@ class World
   def initialize
     @current_location = :forest
     @places = {
-      :forest =>  Location.new('forest','a dark scary forest', Set[:tree, :castle]),
-      :castle => Location.new('castle','fat castle', Set[:forest, :pit]),
-      :pit => Location.new('pit','a dark tar filled pit', Set[:castle]),
-      :portal => Location.new('portal','a mysterious woosh woosh portal', Set[:forest, :castle, :pit, :tree]),
-      :tree => Location.new('tree','a mystic tree', Set[:portal, :forest]),
+      :forest =>  Location.new('forest','a dark scary forest', [:tree, :castle]),
+      :castle => Location.new('castle','fat castle', [:forest, :pit]),
+      :pit => Location.new('pit','a dark tar filled pit', [:castle]),
+      :portal => Location.new('portal','a mysterious woosh woosh portal', [:forest, :castle, :pit, :tree]),
+      :tree => Location.new('tree','a mystic tree', [:portal, :forest]),
     }
   end
 
@@ -42,22 +40,5 @@ class World
   def current_exits
     where_am_i.exits
   end
-
-end
-
-w=World.new
-puts "hello traveler, welcome to the land of EDDDYYYYYY"
-while(true)
- begin
-  puts "you are currently at " + w.where_am_i.name + ", " + w.current_description
-  puts "you can travel to: " + w.current_exits.to_a.join(', ')
-  puts "where would you like to go?"
-  STDOUT.flush  
-  desired_location = gets.chomp.to_sym  
-  w.go_to(desired_location)
-rescue
-  puts 'STOP TRYING TO CHEAT R U N MURCAN?!?!'
-  retry
-end
 
 end

@@ -1,10 +1,9 @@
-require './v2.rb'
-require 'set'
+require './world.rb'
 
 describe World do
   before do
     @world = World.new
-    @forest = Location.new('forest','a dark scary forest', Set[:tree, :castle])
+    @forest = Location.new('forest','a dark scary forest', [:tree, :castle])
   end
 
   it 'starts out in the forest' do
@@ -16,7 +15,7 @@ describe World do
   end
 
   it 'shows you list of possible exits' do
-    @world.current_exits.should eq Set[:castle, :tree]
+    @world.current_exits.should eq [:tree, :castle]
   end
 
   it 'lets you go to possible places' do
@@ -34,7 +33,7 @@ end
 
 describe Location do
   before do
-    @forest = Location.new('forest','a dark scary forest', Set[:tree, :castle])
+    @forest = Location.new('forest','a dark scary forest', [:tree, :castle])
   end
   
   it 'has a description and name' do
@@ -43,6 +42,6 @@ describe Location do
   end
   
   it 'has exits' do
-    @forest.exits.should eq Set[:tree, :castle]
+    @forest.exits.should eq [:tree, :castle]
   end
 end
