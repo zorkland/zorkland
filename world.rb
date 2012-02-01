@@ -10,7 +10,7 @@ end
 
 class World
   attr_reader :current_location
- 
+
   def initialize
     @current_location = :forest
     @places = {
@@ -25,11 +25,11 @@ class World
   def where_am_i
     @places[@current_location]
   end
-  
+
   def current_description
     where_am_i.description
   end
-  
+
   def go_to(new_location)
     if ! current_exits.include?(new_location)
       raise "cannot skip locations"
