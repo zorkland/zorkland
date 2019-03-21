@@ -1,7 +1,7 @@
 Zorkland
 ========
 
-Zorkland is a Zork clone intended to help noobs learn to read and write Ruby 
+Zorkland is a Zork clone intended to help noobs learn to read and write Ruby
 programs.
 
 Dependencies
